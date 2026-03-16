@@ -23,18 +23,18 @@ def investment_simulator():
         if option == 1:
             deposit = int(input("Enter Deposit Amount: £"))
             balance += deposit
-            print(f"Updated Balance: £{balance}") 
+            print(f"Updated Balance: £{balance:.2f}") 
             print("____________________________________________")
            
         #withdrawal 
         if option == 2:
             withdraw = int(input("Enter Withdrawal Amount: £"))
             balance = balance - withdraw
-            print(f"Updated Balance: £{balance}")
+            print(f"Updated Balance: £{balance:.2f}")
           
         # check current balance  
         if option == 3:
-            print(f"Current Balance: £{balance}")
+            print(f"Current Balance: £{balance:.2f}")
             
         # stock market   
         if option == 4:
@@ -93,7 +93,7 @@ def investment_simulator():
             print("Have a nice day. Goodbye!")
             break
                     
-                        
 
-        
+
+                              
 investment_simulator()
