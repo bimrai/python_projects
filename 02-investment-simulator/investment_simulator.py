@@ -14,6 +14,7 @@ def investment_simulator():
         print("3. Check Balance")
         print("4. Stock Market")
         print("5. Portfolio")
+        print("0. Exit")
         print("____________________________________________")
         # user option input for menu 
         option = int(input("Please choose an option: "))
@@ -35,62 +36,62 @@ def investment_simulator():
         if option == 3:
             print(f"Current Balance: £{balance}")
             
+        # stock market   
         if option == 4:
+    
             print("____________________________________________")
-            print("1. Watchlist")
+            print("1. Apple")
+            print("2. NVIDIA")
+            print("3. Tesla")
+            print("4. Meta")
+            print("5. Amazon")
             print("0. Back")
             print("____________________________________________")
             option = int(input("Please choose an option: "))
             
             if option == 1:
-                print("____________________________________________")
-                print("1. Apple")
-                print("2. NVIDIA")
-                print("3. Tesla")
-                print("4. Meta")
-                print("5. Amazon")
-                print("0. Back")
-                print("____________________________________________")
-                option = int(input("Please choose an option: "))
+                apple_stock = 189.83
+                print(f"Apple Stock Current Price: £{apple_stock}")
                 
-                if option == 1:
-                    apple_stock = 189.83
-                    print(f"Apple Stock Current Price: £{apple_stock}")
+                while True:
+                    amount = int(input("Apple Stock, Enter Amount: £"))
                     
-                    while True:
-                        amount = int(input("Apple Stock, Enter Amount: £"))
-                    
-                        if balance >= amount and balance > apple_stock:
-                            apple_shares = amount / apple_stock
-                            print(f"You have Succesfully Purchased {apple_shares:.4f} Shares of Apple Stock worth about £{amount}.")
-                            balance -= amount
+                    if amount > 0:
+                        print(f"Please confirm your purchase: Apple Stock Purchase -> £{amount:.2f}")
+                
+                    if balance >= amount and balance > apple_stock:
+                        apple_shares = amount / apple_stock
+                        print(f"You have Succesfully Purchased {apple_shares:.4f} Shares of Apple Stock worth about £{amount:.2f}.")
+                        balance -= amount
+                        break
+                    elif balance < amount:
+                        print(f"Insufficient Funds: £{balance:.2f}.")
+                        print("Would you like to add funds?")
+                        print("1. Yes")
+                        print("0. No")
+                        pick = int(input("Enter 1 or 0: "))
+                        
+                        if pick == 1:
+                            deposit = int(input("Enter Deposit Amount: £"))
+                            balance = balance + deposit
+                            print(f"Updated Balance: £{balance:.2f}") 
+                            print("____________________________________________")
+                        else:
                             break
-                        elif balance < amount:
-                            print(f"Insufficient Funds: £{balance}.")
-                            print("Would you like to add funds?")
-                            print("1. Yes")
-                            print("0. No")
-                            pick = int(input("Enter 1 or 0: "))
-                            
-                            if pick == 1:
-                                balance = int(input("Enter Deposit Amount: £"))
-                                balance += balance
-                                print(f"Updated Balance: £{balance}") 
-                                print("____________________________________________")
-                            else:
-                                break
-                
-                if option == 2:
-                    print("will add later")
-                if option == 2:
-                    print("will add later")
-                if option == 2:
-                    print("will add later")
-                if option == 2:
-                    print("will add later")
-                    
-                if option == 0:
-                    continue
+            
+        if option == 2:
+            print("will add later")
+        if option == 2:
+            print("will add later")
+        if option == 2:
+            print("will add later")
+        if option == 2:
+            print("will add later")
+        
+        # exit 
+        if option == 0:
+            print("Have a nice day. Goodbye!")
+            break
                     
                         
 
