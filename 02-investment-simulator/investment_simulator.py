@@ -21,25 +21,33 @@ def investment_simulator():
         
         # deposit
         if option == 1:
-            deposit = int(input("Enter Deposit Amount: £"))
+            deposit = int(input("Deposit \n Enter Deposit Amount: £"))
             balance += deposit
-            print(f"Updated Balance: £{balance:,.2f}") 
             print("____________________________________________")
+            print(f"You have successfully deposited £{deposit:,.2f} \n Updated Balance: £{balance:,.2f}")
            
         #withdrawal 
         if option == 2:
-            withdraw = int(input("Enter Withdrawal Amount: £"))
-            balance = balance - withdraw
-            print(f"Updated Balance: £{balance:,.2f}")
+            while True:
+                print("____________________________________________")
+                withdraw = int(input("Withdraw \n Enter Withdrawal Amount: £"))
+                
+                if withdraw <= balance:
+                    balance = balance - withdraw
+                    print(f"You have successfully withdrawn £{withdraw:,.2f} \n Updated Balance: £{balance:,.2f}")
+                    break
+                elif withdraw > balance:
+                    print("Insufficent Funds")
+                    continue
           
         # check current balance  
         if option == 3:
-            print(f"Current Balance: £{balance:,.2f}")
+            print("____________________________________________")
+            print(f"Balance \n Current Balance: £{balance:,.2f}")
             
         # stock market   
         if option == 4:
-    
-            print("____________________________________________")
+            print("Stock Market:")
             print("1. Apple")
             print("2. NVIDIA")
             print("3. Tesla")
@@ -51,19 +59,28 @@ def investment_simulator():
             
             if option == 1:
                 apple_stock = 189.83
-                print(f"Apple Stock Current Price: £{apple_stock}")
+                print("____________________________________________")
+                print(f"Selected Apple Stock: \n Apple Stock Current Price: £{apple_stock:,.2f} | Current Balance: £{balance:,.2f}")
                 
                 while True:
-                    amount = int(input("Apple Stock, Enter Amount: £"))
+                    amount = int(input("Apple Stock - Enter Purchase Amount: £"))
                     
-                    if amount > 0:
-                        print(f"Please confirm your purchase: Apple Stock Purchase -> £{amount:,.2f}")
-                
+                    apple_shares = amount / apple_stock
+                    
                     if balance >= amount and balance > apple_stock:
-                        apple_shares = amount / apple_stock
-                        print(f"You have Succesfully Purchased {apple_shares:,.4f} Shares of Apple Stock worth about £{amount:,.2f}.")
-                        balance -= amount
-                        break
+                        print(f"Please confirm your purchase - Apple Stock Purchase: £{amount:,.2f} \n Shares: {apple_shares:,.4f}")
+                        print("1. Confirm")
+                        print("0. Cancel")
+                        confirm = int(input("Please Enter: "))
+                        
+
+                        if confirm == 1:
+                            print(f"Transaction Complete! \n You have Succesfully Purchased {apple_shares:,.4f} Shares of Apple Stock worth about £{amount:,.2f}.")
+                            balance -= amount
+                            break
+                        else:
+                            break
+                    
                     elif balance < amount:
                         print(f"Insufficient Funds: £{balance:,.2f}.")
                         print("Would you like to add funds?")
@@ -79,14 +96,15 @@ def investment_simulator():
                         else:
                             break
             
-        if option == 2:
-            print("will add later")
-        if option == 2:
-            print("will add later")
-        if option == 2:
-            print("will add later")
-        if option == 2:
-            print("will add later")
+            # stocks
+            if option == 2:
+                print("will add later")
+            if option == 2:
+                print("will add later")
+            if option == 2:
+                print("will add later")
+            if option == 2:
+                print("will add later")
         
         # exit 
         if option == 0:
@@ -96,4 +114,4 @@ def investment_simulator():
 
 
                               
-investment_simulator()
+investment_simulator() # run python investment_simulator.py
