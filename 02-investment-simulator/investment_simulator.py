@@ -23,18 +23,18 @@ def investment_simulator():
         if option == 1:
             deposit = int(input("Enter Deposit Amount: £"))
             balance += deposit
-            print(f"Updated Balance: £{balance:.2f}") 
+            print(f"Updated Balance: £{balance:,.2f}") 
             print("____________________________________________")
            
         #withdrawal 
         if option == 2:
             withdraw = int(input("Enter Withdrawal Amount: £"))
             balance = balance - withdraw
-            print(f"Updated Balance: £{balance:.2f}")
+            print(f"Updated Balance: £{balance:,.2f}")
           
         # check current balance  
         if option == 3:
-            print(f"Current Balance: £{balance:.2f}")
+            print(f"Current Balance: £{balance:,.2f}")
             
         # stock market   
         if option == 4:
@@ -57,15 +57,15 @@ def investment_simulator():
                     amount = int(input("Apple Stock, Enter Amount: £"))
                     
                     if amount > 0:
-                        print(f"Please confirm your purchase: Apple Stock Purchase -> £{amount:.2f}")
+                        print(f"Please confirm your purchase: Apple Stock Purchase -> £{amount:,.2f}")
                 
                     if balance >= amount and balance > apple_stock:
                         apple_shares = amount / apple_stock
-                        print(f"You have Succesfully Purchased {apple_shares:.4f} Shares of Apple Stock worth about £{amount:.2f}.")
+                        print(f"You have Succesfully Purchased {apple_shares:,.4f} Shares of Apple Stock worth about £{amount:,.2f}.")
                         balance -= amount
                         break
                     elif balance < amount:
-                        print(f"Insufficient Funds: £{balance:.2f}.")
+                        print(f"Insufficient Funds: £{balance:,.2f}.")
                         print("Would you like to add funds?")
                         print("1. Yes")
                         print("0. No")
@@ -74,7 +74,7 @@ def investment_simulator():
                         if pick == 1:
                             deposit = int(input("Enter Deposit Amount: £"))
                             balance = balance + deposit
-                            print(f"Updated Balance: £{balance:.2f}") 
+                            print(f"Updated Balance: £{balance:,.2f}") 
                             print("____________________________________________")
                         else:
                             break
