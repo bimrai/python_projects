@@ -1,5 +1,10 @@
 def investment_simulator():
     
+    # will use later for expenditure feature
+    # expenditure = []
+    
+    
+    
     # account class
     class Account:
         def __init__(self, user, balance, stocks, total_invested):
@@ -49,6 +54,14 @@ def investment_simulator():
         
         def show_stock(self):
             print(f"Stock: {self.stock_name} \n Shares: {self.shares} Total Invested: £{self.stock_total} \n Bought Price: £{self.buy_price}")
+            
+    stock = {
+        "Apple Inc" : 189.83,
+        "NVIDIA Corp": 182.62,
+        "Tesla Inc" : 398.28,
+        "Meta Platforms Inc": 620.34,
+        "Amazon.com Inc": 211.65, 
+    }
     
     # class object created           
     account = Account("BIM117", 0, [], 0)
@@ -80,13 +93,21 @@ def investment_simulator():
             
         # stock market   
         if option == 4:
+            
             print("Stock Market:")
-            print("1. Apple")
-            print("2. NVIDIA")
-            print("3. Tesla")
-            print("4. Meta")
-            print("5. Amazon")
+            
+            for i, company in enumerate(stock.keys(), start = 1):
+                print(f"{i}. {company}")
+            
             print("0. Back")
+            
+            # print("1. Apple")
+            # print("2. NVIDIA")
+            # print("3. Tesla")
+            # print("4. Meta")
+            # print("5. Amazon")
+            # print("0. Back")   <- back doesnt work at the moment
+            
             print("____________________________________________")
             option = int(input("Please Select An Option: "))
             
@@ -151,7 +172,7 @@ def investment_simulator():
                             print(f"Updated Balance: £{account.balance:,.2f}") 
                             print("____________________________________________")
                         else:
-                            break
+                            continue
             
             # stocks
             if option == 2:
@@ -160,8 +181,8 @@ def investment_simulator():
                 print("will add later")
             if option == 2:
                 print("will add later")
-            if option == 2:
-                print("will add later")
+            if option == 0:
+                break
         
         if option == 5:
             account.portfolio()
