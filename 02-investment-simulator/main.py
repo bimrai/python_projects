@@ -1,15 +1,13 @@
 def investment_simulator():
     
-    # will use later for expenditure feature
-    # expenditure = []
-    
     # account class
     class Account:
-        def __init__(self, user, balance, user_portfolio):
+        def __init__(self, user, balance, stocks, total_invested):
             self.user = user
             self.balance = balance
-            self.user_portfolio = user_portfolio
-
+            self.stocks = stocks
+            self.total_invested = total_invested
+        
         def deposit(self): 
             amount = int(input("Deposit \n Enter Deposit Amount: £"))
             self.balance += amount
@@ -32,12 +30,30 @@ def investment_simulator():
                 elif withdraw > self.balance:
                     print("Insufficent Funds")
                     continue
+                   
+        def portfolio(self):
+                print("____________________________________________")
+                print("Portfolio")
+                print(f"Balance: £{self.balance:,.2f}")
+                print(f"Total Invested: £{self.total_invested:,.2f}")
+                for stock in self.stocks:
+                    stock.show_stock()
+    
+    # stock class
+    class Stock:
+        def __init__(self, stock_name, shares, buy_price, stock_total):
+            self.stock_name = stock_name
+            self.shares = shares
+            self.buy_price = buy_price
+            self.stock_total = stock_total
+        
+        def show_stock(self):
+            print(f"Stock: {self.stock_name} \n Shares: {self.shares} Total Invested: £{self.stock_total} \n Bought Price: £{self.buy_price}")
     
     # class object created           
-    account = Account("BIM117", 0, {})
+    account = Account("BIM117", 0, [], 0)
     
     while True:
-        
         # menu
         print("____________________________________________")
         print("1. Deposit")
@@ -72,7 +88,7 @@ def investment_simulator():
             print("5. Amazon")
             print("0. Back")
             print("____________________________________________")
-            option = int(input("Please choose an option: "))
+            option = int(input("Please Select An Option: "))
             
             # apple stock purchase
             if option == 1:
@@ -80,7 +96,10 @@ def investment_simulator():
                 print("____________________________________________")
                 print(f"Selected Apple Stock: \n Apple Stock Current Price: £{apple_stock:,.2f} | Current Balance: £{account.balance:,.2f}")
                 
-                while True:
+                print("Please choose \n 1. Buy \n 2. Sell \n 0. Back")
+                stock_trade = int(input("Please Select An Option: "))
+                
+                while stock_trade:
                     amount = int(input("Apple Stock - Enter Purchase Amount: £"))
                     
                     apple_shares = amount / apple_stock
@@ -88,19 +107,35 @@ def investment_simulator():
                     # buying power check + confirm purchase
                     if account.balance >= amount and account.balance > apple_stock:
                         print(f"Please confirm your purchase:")
-                        print(f"Apple Stock Purchase: £{amount:,.2f} \n Shares: {apple_shares:,.4f}")
-                        print("1. Confirm")
-                        print("0. Cancel")
-                        confirm = int(input("Please Enter: "))
+                        print(f"Apple Stock Purchase: £{amount:,.2f}, Shares: {apple_shares:,.4f} \n 1. Confirm \n 0. Cancel")
+                        confirm = int(input("Please Select An Option: "))
                         
                         # purchase overview
                         if confirm == 1:
                             print(f"Transaction Complete! \n You have Succesfully Purchased {apple_shares:,.4f} Shares of Apple Stock worth about £{amount:,.2f}.")
                             account.balance -= amount
+                            account.total_invested += amount
+                            # account.stock_invested
+                            
+                            # check if stock already exists or needs to be created
+                            found = False
+                            
+                            for stock in account.stocks:
+                                if stock.stock_name == "Apple":
+                                    stock.shares += apple_shares
+                                    stock.stock_total += amount
+                                    found = True
+                                    break
+                                
+                            if not found:
+                                new_stock = Stock("Apple", apple_shares, apple_stock, amount)
+                                account.stocks.append(new_stock)
+                            
                             print(f"Updated Balance: £{account.balance:,.2f}")
                             break
                         else:
                             break
+                        
                     # option to add more balance or return to main menu if not
                     elif account.balance < amount:
                         print(f"Insufficient Funds: £{account.balance:,.2f}.")
@@ -111,6 +146,7 @@ def investment_simulator():
                         
                         if pick == 1:
                             account.deposit = int(input("Enter Deposit Amount: £"))
+                            # account.deposit()
                             account.balance = account.balance + account.deposit
                             print(f"Updated Balance: £{account.balance:,.2f}") 
                             print("____________________________________________")
@@ -126,6 +162,9 @@ def investment_simulator():
                 print("will add later")
             if option == 2:
                 print("will add later")
+        
+        if option == 5:
+            account.portfolio()
         
         # exit 
         if option == 0:
