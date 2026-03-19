@@ -1,10 +1,5 @@
 def investment_simulator():
     
-    # will use later for expenditure feature
-    # expenditure = []
-    
-    
-    
     # account class
     class Account:
         def __init__(self, user, balance, stocks, total_invested):
@@ -36,7 +31,7 @@ def investment_simulator():
                     print("Insufficent Funds")
                     continue
                    
-        def portfolio(self):
+        def portfolio(self): 
                 print("____________________________________________")
                 print("Portfolio")
                 print(f"Balance: £{self.balance:,.2f}")
@@ -77,22 +72,26 @@ def investment_simulator():
         print("0. Logout")
         print("____________________________________________")
         # user option input for menu 
-        option = int(input("Please choose an option: "))
+        menu_option = int(input("Please Choose An Option: "))
+        
+        while menu_option not in range(0, 6):
+            if menu_option not in range(0, 6):
+                menu_option = int(input("Invalid! Please Choose An Option: "))
         
         # deposit
-        if option == 1:
+        if menu_option == 1:
             account.deposit()
            
         #withdrawal 
-        if option == 2:
+        if menu_option == 2:
             account.withdraw()
           
         # check current balance  
-        if option == 3:
+        if menu_option == 3:
             account.check_balance()
             
         # stock market   
-        if option == 4:
+        if menu_option == 4:
             
             print("Stock Market:")
             
@@ -101,23 +100,16 @@ def investment_simulator():
             
             print("0. Back")
             
-            # print("1. Apple")
-            # print("2. NVIDIA")
-            # print("3. Tesla")
-            # print("4. Meta")
-            # print("5. Amazon")
-            # print("0. Back")   <- back doesnt work at the moment
-            
             print("____________________________________________")
-            option = int(input("Please Select An Option: "))
+            stock_choice = int(input("Please Select An Option: "))
             
             # apple stock purchase
-            if option == 1:
+            if stock_choice == 1:
                 apple_stock = 189.83
                 print("____________________________________________")
                 print(f"Selected Apple Stock: \n Apple Stock Current Price: £{apple_stock:,.2f} | Current Balance: £{account.balance:,.2f}")
                 
-                print("Please choose \n 1. Buy \n 2. Sell \n 0. Back")
+                print("Please choose: \n 1. Buy \n 2. Sell \n 0. Back")
                 stock_trade = int(input("Please Select An Option: "))
                 
                 while stock_trade:
@@ -175,20 +167,20 @@ def investment_simulator():
                             continue
             
             # stocks
-            if option == 2:
+            if stock_choice == 2:
                 print("will add later")
-            if option == 2:
+            if stock_choice == 2:
                 print("will add later")
-            if option == 2:
+            if stock_choice == 2:
                 print("will add later")
-            if option == 0:
-                break
+            if stock_choice == 0:
+                continue
         
-        if option == 5:
+        if menu_option == 5:
             account.portfolio()
         
         # exit 
-        if option == 0:
+        if menu_option == 0:
             print("You have successfully logged out! Have a nice day!")
             break
                     
