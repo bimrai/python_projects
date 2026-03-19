@@ -74,9 +74,9 @@ def investment_simulator():
         # user option input for menu 
         menu_option = int(input("Please Choose An Option: "))
         
+        # handle non accepted inputs
         while menu_option not in range(0, 6):
-            if menu_option not in range(0, 6):
-                menu_option = int(input("Invalid! Please Choose An Option: "))
+            menu_option = int(input("Invalid! Please Choose An Option: "))
         
         # deposit
         if menu_option == 1:
