@@ -1,16 +1,20 @@
+# list object not callable, so i gotta change it from list call to create maybe list/dict to record logs like stock on portfolio. 
+
 def investment_simulator():
     
     # account class
     class Account:
-        def __init__(self, user, balance, stocks, total_invested):
+        def __init__(self, user, balance, stocks, total_invested, transaction_log):
             self.user = user
             self.balance = balance
             self.stocks = stocks
             self.total_invested = total_invested
+            self.transaction_log = transaction_log
         
         def deposit(self): 
             amount = int(input("Deposit \n Enter Deposit Amount: £"))
             self.balance += amount
+            # self.transaction_log = amount
             print("____________________________________________")
             print(f"You have successfully deposited £{amount:,.2f} \nUpdated Balance: £{self.balance:,.2f}")
         
@@ -38,6 +42,28 @@ def investment_simulator():
                 print(f"Total Invested: £{self.total_invested:,.2f}")
                 for stock in self.stocks:
                     stock.show_stock()
+                    
+        def transaction_log(self):
+            print("____________________________________________")
+            print("Transaction History")
+            print(print(f"Balance: £{self.balance:,.2f}"))
+            print(f"Total Invested: £{self.total_invested:,.2f}")
+            
+            for log in self.transaction_log:
+                log.show_transaction()
+            
+            
+        
+        #     # pass
+    
+    class Transaction_History:
+        def __init__(self, transaction_name, transaction_amount):
+            self.transaction_name = transaction_name
+            self.transaction_amount = transaction_amount
+            
+        def show_transaction(self):
+            print(f"{self.transaction_name}: £{self.transaction_amount}")
+        
     
     # stock class
     class Stock:
@@ -59,7 +85,7 @@ def investment_simulator():
     }
     
     # class object created           
-    account = Account("BIM117", 0, [], 0)
+    account = Account("BIM117", 0, [], 0, [])
     
     while True:
         # menu
@@ -69,13 +95,14 @@ def investment_simulator():
         print("3. Check Balance")
         print("4. Stock Market")
         print("5. Portfolio")
+        print("6. Transaction History")
         print("0. Logout")
         print("____________________________________________")
         # user option input for menu 
         menu_option = int(input("Please Choose An Option: "))
         
         # handle non accepted inputs
-        while menu_option not in range(0, 6):
+        while menu_option not in range(0, 7):
             menu_option = int(input("Invalid! Please Choose An Option: "))
         
         # deposit
@@ -144,6 +171,9 @@ def investment_simulator():
                                 new_stock = Stock("Apple", apple_shares, apple_stock, amount)
                                 account.stocks.append(new_stock)
                             
+                            new_transaction = Transaction_History("APPLE", amount)
+                            account.transaction_log.appened(new_transaction)
+                            
                             print(f"Updated Balance: £{account.balance:,.2f}")
                             break
                         else:
@@ -178,6 +208,9 @@ def investment_simulator():
         
         if menu_option == 5:
             account.portfolio()
+            
+        if menu_option == 6:
+            account.transaction_log()
         
         # exit 
         if menu_option == 0:
