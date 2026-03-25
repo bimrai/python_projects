@@ -1,5 +1,3 @@
-# list object not callable, so i gotta change it from list call to create maybe list/dict to record logs like stock on portfolio. 
-
 def investment_simulator():
     
     # account class
@@ -43,18 +41,15 @@ def investment_simulator():
                 for stock in self.stocks:
                     stock.show_stock()
                     
-        def transaction_log(self):
+        def transactions(self):
             print("____________________________________________")
             print("Transaction History")
-            print(print(f"Balance: £{self.balance:,.2f}"))
+            print(f"Balance: £{self.balance:,.2f}")
             print(f"Total Invested: £{self.total_invested:,.2f}")
             
             for log in self.transaction_log:
                 log.show_transaction()
-            
-            
-        
-        #     # pass
+
     
     class Transaction_History:
         def __init__(self, transaction_name, transaction_amount):
@@ -74,7 +69,7 @@ def investment_simulator():
             self.stock_total = stock_total
         
         def show_stock(self):
-            print(f"Stock: {self.stock_name} \n Shares: {self.shares} Total Invested: £{self.stock_total} \n Bought Price: £{self.buy_price}")
+            print(f"Stock: {self.stock_name} \n Shares: {self.shares:.4f} Total Invested: £{self.stock_total:,.2f} \n Bought Price: £{self.buy_price:,.2f}")
             
     stock = {
         "Apple Inc" : 189.83,
@@ -172,7 +167,7 @@ def investment_simulator():
                                 account.stocks.append(new_stock)
                             
                             new_transaction = Transaction_History("APPLE", amount)
-                            account.transaction_log.appened(new_transaction)
+                            account.transaction_log.append(new_transaction)
                             
                             print(f"Updated Balance: £{account.balance:,.2f}")
                             break
@@ -210,7 +205,7 @@ def investment_simulator():
             account.portfolio()
             
         if menu_option == 6:
-            account.transaction_log()
+            account.transactions()
         
         # exit 
         if menu_option == 0:
