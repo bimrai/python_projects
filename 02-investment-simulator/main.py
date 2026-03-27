@@ -57,7 +57,7 @@ def investment_simulator():
             self.transaction_amount = transaction_amount
             
         def show_transaction(self):
-            print(f"{self.transaction_name}: £{self.transaction_amount}")
+            print(f"{self.transaction_name}: £{self.transaction_amount:,.2f}")
         
     
     # stock class
