@@ -183,10 +183,7 @@ def investment_simulator():
                         pick = int(input("Enter 1 or 0: "))
                         
                         if pick == 1:
-                            account.deposit = int(input("Enter Deposit Amount: £"))
-                            # account.deposit()
-                            account.balance = account.balance + account.deposit
-                            print(f"Updated Balance: £{account.balance:,.2f}") 
+                            account.deposit()
                             print("____________________________________________")
                         else:
                             continue
